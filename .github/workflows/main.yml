@@ -1,0 +1,12 @@
+name: main
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  job-0:
+    runs-on: ubuntu-latest
+    steps:
+    - name: one
+      run: echo "run job-0 [one]"
