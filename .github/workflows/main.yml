@@ -35,3 +35,11 @@ jobs:
     steps:
     - name: four
       run: echo "run job-3 [four]"
+
+  job-4:
+    runs-on: ubuntu-latest
+    needs:
+    - job-2
+    steps:
+    - name: five
+      run: echo "run job-4 [five]"\
