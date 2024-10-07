@@ -90,7 +90,7 @@ pipeline {
     post {
         always {
             script {
-                sh(script: 'echo "Send mm notification: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>). Статус: ${currentBuild.result}"')
+                sh(script: "echo Send mm notification: ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Link to build>). Статус: ${currentBuild.result}")
             }
         }
         cleanup {
