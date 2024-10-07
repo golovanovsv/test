@@ -12,13 +12,17 @@ environments = [
 ]
 
 pipeline {
+    agent any
+
     triggers {
         cron('H 8 * * 1-5')
     }
+
     options {
         timestamps()
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
+    
     parameters {
         choice(
             name: "ENVIRONMENT",
