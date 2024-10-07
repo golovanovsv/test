@@ -1,5 +1,3 @@
-@Library('sharedLib')
-
 mmCommonChannel = 'devops-jenkins-notifications'
 
 environments = [
