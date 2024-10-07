@@ -1,3 +1,13 @@
+def failOnNewParams() {
+    params.each({ key, value ->
+        if (env[key].toString() != params[key].toString()) {
+           print("Появился новый параметр $key")
+           currentBuild.result = 'ABORTED'
+           error('Параметры в UI и в пайплане отличались. Перезапустите задачу, пожалуйста')
+        }
+    })
+}
+
 mmCommonChannel = 'devops-jenkins-notifications'
 
 environments = [
