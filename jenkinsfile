@@ -25,7 +25,12 @@ pipeline {
     agent any
 
     triggers {
-        cron('H 8 * * 1-5')
+        parameterizedCron('''
+            # Обновляем стейдж по рабочим дням в 8:00 НСК
+            */1 * * * 1-5 %ENVIRONMENT=stage
+            # Обновляем прод по рабочим дням в 9:00 НСК
+            */5 * * * 1-5 %ENVIRONMENT=prod
+        ''')
     }
 
     options {
