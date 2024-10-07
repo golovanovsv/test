@@ -57,6 +57,7 @@ pipeline {
                     buildName "#${env.BUILD_NUMBER} ${params.BRANCH} [${params.ENVIRONMENT}]"
                     failOnNewParams()
                     helmfileCommand = params.DRY_RUN ? 'diff' : 'apply'
+                    env.HELM_CTX = ${environments[params.ENVIRONMENT].helm_ctx}
                 }
             }
         }
@@ -74,6 +75,7 @@ pipeline {
             steps {
                 dir('helmfile') {
                     sh(script: "echo helmfile --kube-context=${environments[params.ENVIRONMENT].helm_ctx} -e staging -f deploy/all_services.yaml --context=1 ${helmfileCommand}")
+                    sh(script: "echo HELM_CTX: ${HELM_CTX}")
                 }
             }
         }
