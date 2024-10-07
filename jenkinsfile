@@ -19,8 +19,6 @@ pipeline {
         timestamps()
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
-    environment {
-    }
     parameters {
         choice(
             name: "ENVIRONMENT",
