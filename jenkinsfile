@@ -36,7 +36,8 @@ pipeline {
     parameters {
         choice(
             name: "ENVIRONMENT",
-            choices: ["stage", "prod"]
+            choices: ["stage", "prod"],
+            description: "Окружение куда разворачивать"
         )
         string(
             name: 'BRANCH',
