@@ -57,7 +57,7 @@ pipeline {
                     buildName "#${env.BUILD_NUMBER} ${params.BRANCH} [${params.ENVIRONMENT}]"
                     failOnNewParams()
                     helmfileCommand = params.DRY_RUN ? 'diff' : 'apply'
-                    env.HELM_CTX = ${environments[params.ENVIRONMENT].helm_ctx}
+                    env.HELM_CTX = environments[params.ENVIRONMENT].helm_ctx
                 }
             }
         }
