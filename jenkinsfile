@@ -74,6 +74,7 @@ pipeline {
                         sh(script: "echo Получаение внешних данных для: ${params.ENVIRONMENT}")
                     }
                 }
+                sh(script: "echo 2-n step")
             }
         }
 
