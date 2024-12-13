@@ -79,19 +79,19 @@ pipeline {
         }
 
         stage('Update') {
-            parallel deploy-all-services : {
+            parallel deploy-all-services: {
                 dir('helmfile') {
                     sh(script: "echo helmfile --kube-context=${environmentsList[params.ENVIRONMENT].helm_ctx} -e staging -f deploy/all_services.yaml --context=1 ${helmfileCommand} --selector service!-catalog,service!=tiles")
                     sh(script: "echo HELM_CTX: ${HELM_CTX}")
                 }
             },
-            deploy-catalog : {
+            deploy-catalog: {
                 dir('helmfile') {
                     sh(script: "echo helmfile --kube-context=${environmentsList[params.ENVIRONMENT].helm_ctx} -e staging -f deploy/all_services.yaml --context=1 ${helmfileCommand} -l service=catalog")
                     sh(script: "echo HELM_CTX: ${HELM_CTX}")
                 }
             },
-            deploy-tiles : {
+            deploy-tiles: {
                 dir('helmfile') {
                     sh(script: "echo helmfile --kube-context=${environmentsList[params.ENVIRONMENT].helm_ctx} -e staging -f deploy/all_services.yaml --context=1 ${helmfileCommand} -l service=tiles")
                     sh(script: "echo HELM_CTX: ${HELM_CTX}")
